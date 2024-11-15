@@ -1,8 +1,10 @@
 require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
 require("@nomicfoundation/hardhat-verify");
-
+require("dotenv").config();
+require("hardhat-deploy");
 require("./tasks")
+
+
 
 
 const SEPOLIA_URL = process.env.SEPOLIA_URL
@@ -12,6 +14,7 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.27",
+  defaultNetwork: "hardhat",
   networks:{
     sepolia: {
       url: SEPOLIA_URL,           // alchemy, infure,
@@ -22,6 +25,14 @@ module.exports = {
   etherscan: {
     apiKey: {
       sepolia: ETHERSCAN_API_KEY
+    }
+  },
+  namedAccounts:{
+    firsetAccount:{
+      default: 0
+    },
+    secondAccount:{
+      default: 1
     }
   }
 };
